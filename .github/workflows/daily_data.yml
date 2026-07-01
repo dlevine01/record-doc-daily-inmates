@@ -1,0 +1,44 @@
+name: Daily Data Fetch
+
+on:
+  schedule:
+    # Runs at 1:00 AM UTC every day
+    - cron: '0 1 * * *'
+  workflow_dispatch: {}  # allows manual triggering from the Actions tab
+
+permissions:
+  contents: write  # needed so the workflow can push a commit
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'  # caches pip downloads between runs, still installs each time
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run data script
+        env:
+          OPEN_DATA_APP_TOKEN: ${{ secrets.OPEN_DATA_APP_TOKEN }}  # rename to match whatever your script expects
+        run: python get_data.py
+
+      - name: Commit and push new data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Add daily data $(date -u +'%Y-%m-%d')"
+            git push
+          fi
