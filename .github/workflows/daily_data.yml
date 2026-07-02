@@ -26,10 +26,13 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Run data script
+      - name: Fetch data
         env:
-          OPEN_DATA_APP_TOKEN: ${{ secrets.OPEN_DATA_APP_TOKEN }}  # rename to match whatever your script expects
+          OPEN_DATA_APP_TOKEN: ${{ secrets.OPEN_DATA_APP_TOKEN }}
         run: python get_data.py
+
+      - name: Summarize data
+        run: python summarize_data.py
 
       - name: Commit and push new data
         run: |
