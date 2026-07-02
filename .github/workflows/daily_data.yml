@@ -2,8 +2,8 @@ name: Daily Data Fetch
 
 on:
   schedule:
-    # Runs at 1:00 AM UTC every day
-    - cron: '0 1 * * *'
+    # Runs at 5:00 AM UTC every day
+    - cron: '0 5 * * *'
   workflow_dispatch: {}  # allows manual triggering from the Actions tab
 
 permissions:
