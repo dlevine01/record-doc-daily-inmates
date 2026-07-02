@@ -12,4 +12,4 @@ Saves summary data in [Summary data](./Summary%20data/)
 
 ## Individuals in custody
 
-<iframe src="https://vega.github.io/vega-embed/vega-embed.html?spec=chart.json" width="100%" height="300"></iframe>
+![Chart](./chart.png)
