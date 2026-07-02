@@ -17,22 +17,23 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
         with:
           python-version: '3.12'
-          cache: 'pip'  # caches pip downloads between runs, still installs each time
+          enable-cache: true
+          cache-dependency-glob: 'pyproject.toml'  # cache key based on this file's contents
 
       - name: Install dependencies
-        run: pip install requests
+        run: uv sync  # reads pyproject.toml (and uv.lock, if present)
 
       - name: Fetch data
         env:
           OPEN_DATA_APP_TOKEN: ${{ secrets.OPEN_DATA_APP_TOKEN }}
-        run: python get_data.py
+        run: uv run python get_data.py
 
       - name: Summarize data
-        run: python summarize_data.py
+        run: uv run python summarize_data.py
 
       - name: Commit and push new data
         run: |
