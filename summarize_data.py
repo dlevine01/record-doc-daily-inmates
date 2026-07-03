@@ -52,7 +52,7 @@ def save_summary_data(summary_data):
     #     )
     # )
 
-    summary_data.to_csv('Summary Data/summary_data.csv', index=False)
+    summary_data.to_csv('Summary data/summary_data.csv', index=False)
 
 def save_chart(summary_data):
 
