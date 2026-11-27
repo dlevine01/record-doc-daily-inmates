@@ -733,3 +733,8 @@
 2026-11-26 14:33:20,656 INFO Fetching metadata from https://data.cityofnewyork.us/api/views/metadata/v1/7479-ugqb
 2026-11-26 14:33:25,825 INFO Saving data to Daily data/2026_11_25.json
 2026-11-26 14:33:25,878 INFO Saved data successfully.
+2026-11-27 14:28:00,513 INFO Fetching data from https://data.cityofnewyork.us/resource/7479-ugqb.json
+2026-11-27 14:28:04,129 INFO Fetched 6603 records
+2026-11-27 14:28:04,129 INFO Fetching metadata from https://data.cityofnewyork.us/api/views/metadata/v1/7479-ugqb
+2026-11-27 14:28:04,228 INFO Saving data to Daily data/2026_11_26.json
+2026-11-27 14:28:04,280 INFO Saved data successfully.
